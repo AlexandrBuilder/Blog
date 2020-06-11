@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+{% include "widgets/header.html" with title='Статьи про CSS3' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mt-3 left">
+            {% for post in post_list %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text text-muted h6">{{ post.created }} </p>
+
+                    <p class="card-text">{{ post.annotation|slice:":300" }}</p>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <a href="{% url 'blog:post_detail' post.slug %}" class="btn btn-primary">Читать&rarr;</a>
+                        </div>
+                        <div id="like-{{ post.id }}">
+                            {% include 'blog/widgets/like.html' with post=post%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="d-flex justify-content-center">
+                {% bootstrap_pagination page_obj %}
+            </div>
+        </div>
+        {% include 'blog/widgets/sidebar.html' %}
+    </div>
+</div>
+{% endblock %}

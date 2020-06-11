@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-5 card mb-4 mt-5">
+                <div class="d-flex justify-content-center mt-3">
+                    <h2>Авторизация</h2>
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                    {% if form.errors %}
+                        <p>Ваше имя пользователя и пароль не совпадают. Пожалуйста, попробуйте еще раз.</p>
+                    {% else %}
+                        <p>
+                            Пожалуйста, используйте следующую форму для входа в систему. Если у вас нет учетной записи
+                            <a href="{% url 'register' %}">Зарегистрироваться</a>
+                        </p>
+                    {% endif %}
+                </div>
+                <div class="login-form mt-3">
+                    <form action="{% url 'login' %}" method="post">
+                        <input type="hidden" name="next" value="{{ next }}"/>
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <div class="d-flex justify-content-end">
+                            {% buttons %}
+                                <button type="submit" class="btn btn-primary">Авторизоваться</button>
+                            {% endbuttons %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

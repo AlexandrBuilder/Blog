@@ -1,0 +1,7 @@
+{% load method %}
+
+<a class="like-post p-1 pr-2" href="javascript:like({{ post.id }});">
+    <i class="fa {% if post|method:'has_like'|with:request.user|call %} fa-heart {% else %} fa-heart-o {% endif %} like-post-icon"
+       aria-hidden="true"></i>
+    <span class="like-post-text">{{ post.likes.count }}</span>
+</a>

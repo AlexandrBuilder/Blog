@@ -1,0 +1,99 @@
+{% load bootstrap4 %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Django Central</title>
+
+    <meta name="google" content="notranslate"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow" id="mainNav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'blog:post_list' %}">CSS3</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item text-black">
+                    <a class="nav-link text-black font-weight-bold {% if request.resolver_match.url_name == 'index' %} active {% endif %}"
+                       href="{% url 'blog:index' %}">CSS3</a>
+                </li>
+                <li class="nav-item text-black">
+                    <a class="nav-link text-black font-weight-bold {% if request.resolver_match.url_name == 'history' %} active {% endif %}"
+                       href="{% url 'blog:history' %}">История CSS3</a>
+                </li>
+                <li class="nav-item text-black">
+                    <a class="nav-link text-black font-weight-bold {% if request.resolver_match.url_name == 'post_list' %} active {% endif %}"
+                       href="{% url 'blog:post_list' %}">Статьи про CSS3</a>
+                </li>
+                <li class="nav-item text-black">
+                    <a class="nav-link text-black font-weight-bold {% if request.resolver_match.url_name == 'property_list' %} active {% endif %}"
+                       href="{% url 'blog:property_list' %}">Справочник по CSS</a>
+                </li>
+                <li class="nav-item text-black">
+                    <a class="nav-link text-black font-weight-bold {% if request.resolver_match.url_name == 'resources' %} active {% endif %}"
+                       href="{% url 'blog:resources' %}">Полезные материалы</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-black font-weight-bold ml-5 mr-3 pl-3 pr-3" href="#"
+                       role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        {{ request.user.username }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'password_change' %}">Сменить пароль</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Выйти</a>
+                    </div>
+                </li>
+                {% else %}
+                <a class="nav-link text-black font-weight-bold ml-5 mr-3 pl-3 pr-3" href="{% url 'login' %}">Авторизоваться</a>
+                {% endif %}
+                <!--                <li class="nav-item text-black">-->
+                <!--                    {% if request.user.is_authenticated %}-->
+                <!--                    <a class="nav-link text-black font-weight-bold pl-5" href="{% url 'logout' %}">Logout</a>-->
+                <!--                    {% else %}-->
+                <!--                    <a class="nav-link text-black font-weight-bold pl-5" href="{% url 'login' %}">Log-in</a>-->
+                <!--                    {% endif %}-->
+                <!--                </li>-->
+            </ul>
+        </div>
+    </div>
+    </div>
+</nav>
+
+{% block content %}{% endblock content %}
+
+<footer class="py-3 bg-grey">
+    <p class="m-0 text-dark text-center ">Copyright &copy; CSS3</p>
+</footer>
+
+<script>
+    function like(postId) {
+        elemId = '#like-' + postId;
+
+        $.get("{% url 'blog:post_like' %}", {
+            id: postId
+        }).done(function (response) {
+            $(elemId).html(response)
+        })
+    }
+</script>
+
+</body>
+</html>

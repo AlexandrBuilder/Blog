@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+{% include "widgets/header.html" with title='Справочник CSS3' %}
+
+{% regroup property_list by first_letter as list_groups %}
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-10 card mb-4 mt-3">
+            <div class="card-body">
+                {% for group in list_groups %}
+                <hr>
+                <div class="text-center mb-4">
+                    <h2>{{ group.grouper|capfirst }}</h2>
+                </div>
+                {% for item in group.list %}
+
+                {% if forloop.counter0|divisibleby:3 and not forloop.first %}
+            </div>
+            {% endif %}
+            {% if forloop.counter0|divisibleby:3%}
+            <div class="row">
+                {% endif %}
+
+                <div class="col text-center mb-4 mt-1">
+                    <a class="border border-primary p-2" href="{% url 'blog:property_detail' item.slug %}">
+                        {{ item.title }}</a>
+                </div>
+
+                {% if forloop.last %}
+            </div>
+            {% endif %}
+
+            {% endfor %}
+
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+</div>
+{% endblock %}

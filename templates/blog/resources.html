@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+    {% include "widgets/header.html" with title='Полезные материалы' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="row justify-content-md-center">
+                <div class="col-md-10 card mb-4 mt-3">
+                    <div class="card-body">
+                        <h2>Для глубокого изучения материала и использования его на практике рекомендуются следующие
+                            источники:</h2>
+                        <hr>
+                        <h4>1) Подробнейшие курсы по HTML, CSS и JavaScript от HTML Academy</h4>
+                        <a role="button" type="button" class="btn btn-outline-primary btn-lg btn-block mt-4 mb-4"
+                           href="https://htmlacademy.ru/">Курс</a>
+                        <p>Кто проводит: HTML Academy, на мой взгляд, её сайт — лучшее место для обучения основам
+                            вёрстки.</p>
+                        <p>Формат: интерактивные уроки с практическими заданиями.</p>
+                        <p>Сколько длится: зависит от твоей скорости и мотивации.</p>
+                        <p>Стоимость: большая часть курсов бесплатна.</p>
+                        <h5>Что ты узнаешь из курса:</h5>
+                        <ul>
+                            <li>Основы HTML5.</li>
+                            <li>Базовое представление о CSS3.</li>
+                            <li>Основы JavaScript.</li>
+                            <li>Основы PHP</li>
+                        </ul>
+                        <hr>
+                        <h4>2) HTML/CSS от Beonmax</h4>
+                        <a role="button" type="button" class="btn btn-outline-primary btn-lg btn-block mt-4 mb-4"
+                           href="https://beonmax.com/courses/html-and-css/?pref=14251">Курс</a>
+                        <p>Кто проводит: Beonmax.</p>
+                        <p>Формат: видеоуроки + интерактивные упражнения + домашние задания.</p>
+                        <p>Сколько длится: 31 видеурок = 5 часов.</p>
+                        <h5>Что ты узнаешь из курса:</h5>
+                        <ul>
+                            <li>Какие программы и инструменты надо использовать для вёрстки.</li>
+                            <li>Какие теги HTML существуют.</li>
+                            <li>Основы синтаксиса CSS.</li>
+                            <li>Как создавать меню, хедер, футер, сайдбар и многое другое.</li>
+                        </ul>
+                        <hr>
+                        <h4>3) Основы HTML и CSS</h4>
+                        <a role="button" type="button" class="btn btn-outline-primary btn-lg btn-block mt-4 mb-4"
+                           href="https://netology.ru/programs/html-css-base?utm_source=internalpartners&utm_medium=cpa&utm_campaign=4_385_5_internalpartners&utm_term=up6230043&utm_content=&stop=1">Курс</a>
+                        <p>Кто проводит: онлайн-университет интернет-профессий «Нетология».</p>
+                        <p>Формат: онлайн-вебинары 2 раза в неделю.</p>
+                        <p>Сколько длится: 2 недели.</p>
+                        <h5>Что ты узнаешь из курса:</h5>
+                        <ul>
+                            <li>Как вносить правки в HTML-код страницы и верстать текстовые блоки.</li>
+                            <li>Как менять оформление и стиль элементов сайта.</li>
+                            <li>Как профессиональные верстальщики работают над проектами.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
